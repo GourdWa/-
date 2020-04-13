@@ -27,9 +27,6 @@ public class SqlList<T> {
         return maxSize;
     }
 
-    public void setMaxSize(int maxSize) {
-        this.maxSize = maxSize;
-    }
 
     public int getLength() {
         return length;

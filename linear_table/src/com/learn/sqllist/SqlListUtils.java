@@ -1,11 +1,14 @@
 package com.learn.sqllist;
 
+
+
 /**
  * @author ZixiangHu
  * @create 2020-04-13  14:28
  * @description
  */
 public class SqlListUtils {
+
 
     /**
      * 获取第i个位置上的元素
@@ -15,11 +18,11 @@ public class SqlListUtils {
      * @return
      * @throws Exception
      */
-    public static <T> T getElem(SqlList sqlList, int i) throws Exception {
+    public static <T> T getElem(SqlList<T> sqlList, int i) throws Exception {
         if (sqlList.getLength() == 0 || i < 1 || i > sqlList.getLength()) {
             throw new Exception("获取的第" + i + "个元素序号不存在");
         }
-        return (T) sqlList.getData()[i];
+        return sqlList.getData()[i];
     }
 
     /**
@@ -30,7 +33,7 @@ public class SqlListUtils {
      * @param e
      * @return
      */
-    public static <T> boolean listInsert(SqlList sqlList, int i, T e) throws Exception {
+    public static <T> boolean listInsert(SqlList<T> sqlList, int i, T e) throws Exception {
         if (sqlList.getLength() == sqlList.getMaxSize())
             throw new Exception("顺序链表已满");
         if (i < 1 || i > sqlList.getLength() + 1)
@@ -52,7 +55,7 @@ public class SqlListUtils {
      * @return
      * @throws Exception
      */
-    public static <T> T listDelete(SqlList sqlList, int i) throws Exception {
+    public static <T> T listDelete(SqlList<T> sqlList, int i) throws Exception {
         if (sqlList.getLength() == 0)
             throw new Exception("有序列表为空");
         if (i < 1 || i > sqlList.getLength())
