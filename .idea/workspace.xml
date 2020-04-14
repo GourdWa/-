@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e4dbbac-5249-409a-9150-618ae30b493d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/linear_table/src/com/learn/domain/TestLinkList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/linear_table/src/com/learn/linkList/Node.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/linear_table/src/com/learn/domain/MergeTwoSortedLists.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/linear_table/src/com/learn/domain/RemoveNthNodeFromEndOfList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/linear_table/src/com/learn/domain/ReverseLinkedList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/linear_table/删除链表的导数第N个节点.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linear_table/src/com/learn/sqllist/SqlList.java" beforeDir="false" afterPath="$PROJECT_DIR$/linear_table/src/com/learn/sqllist/SqlList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linear_table/src/com/learn/domain/TestSqlList.java" beforeDir="false" afterPath="$PROJECT_DIR$/linear_table/src/com/learn/domain/TestSqlList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/linear_table/src/com/learn/sqllist/SqlListUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/linear_table/src/com/learn/sqllist/SqlListUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/linear_table/com/learn/domain/TestSqlList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/linear_table/com/learn/domain/TestSqlList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/linear_table/com/learn/sqllist/SqlList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/linear_table/com/learn/sqllist/SqlList.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/linear_table/com/learn/sqllist/SqlListUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/linear_table/com/learn/sqllist/SqlListUtils.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,6 +36,12 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/linear_table" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Study\JAVA\DataStructure\linear_table" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -47,7 +55,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TestLinkList">
+  <component name="RunManager" selected="Application.TestSqlList">
     <configuration name="TestLinkList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.learn.domain.TestLinkList" />
       <module name="linear_table" />
@@ -76,8 +84,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestLinkList" />
         <item itemvalue="Application.TestSqlList" />
+        <item itemvalue="Application.TestLinkList" />
       </list>
     </recent_temporary>
   </component>
@@ -92,7 +100,8 @@
       <option name="presentableId" value="Default" />
       <updated>1586757760075</updated>
       <workItem from="1586757763522" duration="4379000" />
-      <workItem from="1586781518103" duration="9271000" />
+      <workItem from="1586781518103" duration="9295000" />
+      <workItem from="1586823794784" duration="12287000" />
     </task>
     <servers />
   </component>
@@ -116,14 +125,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/linear_table/src/com/learn/sqllist/SqlListUtils.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/linear_table/src/com/learn/domain/TestLinkList.java</url>
           <line>13</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/linear_table/src/com/learn/domain/TestSqlList.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

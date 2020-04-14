@@ -16,7 +16,17 @@ public class TestSqlList {
         SqlListUtils.listInsert(sqlList,1,20);
         System.out.println("插入一个元素后SqlList的长度："+sqlList.getLength());
         SqlListUtils.show(sqlList);
-        SqlListUtils.listInsert(sqlList,2,"20");
+        SqlListUtils.listInsert(sqlList,2,30);
+        SqlListUtils.show(sqlList);
+        SqlListUtils.listInsert(sqlList,1,66);
+        SqlListUtils.show(sqlList);
+        SqlListUtils.listInsert(sqlList,4,66);
+        SqlListUtils.show(sqlList);
+        System.out.println(SqlListUtils.listDelete(sqlList, 4));
+        SqlListUtils.show(sqlList);
+        System.out.println(SqlListUtils.listDelete(sqlList, 1));
+        SqlListUtils.show(sqlList);
+        System.out.println(SqlListUtils.getElem(sqlList,2));
 
     }
 }

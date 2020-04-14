@@ -1,7 +1,6 @@
 package com.learn.sqllist;
 
 
-
 /**
  * @author ZixiangHu
  * @create 2020-04-13  14:28
@@ -22,7 +21,7 @@ public class SqlListUtils {
         if (sqlList.getLength() == 0 || i < 1 || i > sqlList.getLength()) {
             throw new Exception("获取的第" + i + "个元素序号不存在");
         }
-        return sqlList.getData()[i];
+        return sqlList.getData()[i - 1];
     }
 
     /**
@@ -39,7 +38,7 @@ public class SqlListUtils {
         if (i < 1 || i > sqlList.getLength() + 1)
             throw new Exception("插入序号" + i + "不正确");
         if (i <= sqlList.getLength()) {
-            for (int j = sqlList.getLength(); j >= i - 1; j--) {
+            for (int j = sqlList.getLength(); j >= i; j--) {
                 sqlList.getData()[j] = sqlList.getData()[j - 1];
             }
         }
@@ -60,9 +59,8 @@ public class SqlListUtils {
             throw new Exception("有序列表为空");
         if (i < 1 || i > sqlList.getLength())
             throw new Exception("删除的索引" + i + "不正确");
-        Object res = null;
+        Object res = sqlList.getData()[i - 1];
         if (i < sqlList.getLength()) {
-            res = sqlList.getData()[i - 1];
             for (int j = i; j < sqlList.getLength(); j++) {
                 sqlList.getData()[j - 1] = sqlList.getData()[j];
             }
