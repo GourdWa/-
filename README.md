@@ -208,3 +208,150 @@ public T listDelete(int i) throws Exception {
 1. 删除单链表的倒数第k个节点
 2. 反转单链表
 3. 合并两个有序链表
+### 第四章
+----
+#### 栈
+仅限定在表尾进行插入和删除操作的线性表  
+允许插入和删除的一端称为栈顶，另一端称为栈底。栈又称为后进先出的线性表  
+**入栈和出栈思想**  
+1. 定义一个变量top指向栈顶元素（栈为空时，top=-1，栈满时top=maxsize-1）
+```
+public class SqStack<T> {
+    private int maxsize;
+    private T[] data;
+    private int top;
+
+    public SqStack(Class<T> type, int maxsize) {
+        this.maxsize = maxsize;
+        this.data = (T[]) Array.newInstance(type,maxsize);
+        this.top = -1;
+    }
+...
+}
+```
+2. 入栈时，首先判断栈是否已满，如果未满top自增
+```
+public boolean push(T ele) throws Exception {
+    if (this.top == this.maxsize - 1) {
+        throw new Exception("栈已满");
+    }
+    this.data[++this.top] = ele;
+    return true;
+}
+```
+3. 出栈时，首先判断栈是否为空，如果非空top自减
+```
+public T pop() throws Exception {
+    if (this.top == -1) {
+        throw new Exception("栈为空");
+    }
+    return this.data[top--];
+}
+```
+#### 两栈共享空间
+**思想**：数组有两个端点，两个栈有两个栈底，让一个栈的栈底在数组的始端，即下标为0处，另一个栈为栈的末端，即数组长度n-1处。用top1代表第一个栈的栈顶位置，top2代表第二个栈的栈顶位置，当top1+1=top2时为栈满。注意，在初始化时，top1初始值为-1，top2的初始值为maxsize
+**两栈共享空间实现**
+1. 定义两个变量top1，指向第一个栈的栈顶，初始为-1；top2，指向第二个栈的栈顶，初始为maxsize
+```
+public class SqDoubleStack<T> {
+    private int maxsize;
+    private T[] data;
+    private int top1;
+    private int top2;
+    private Class<T> type;
+
+    public SqDoubleStack(Class<T> type, int maxsize) {
+        this.type = type;
+        this.maxsize = maxsize;
+        data = (T[]) Array.newInstance(type, maxsize);
+        top1 = -1;
+        top2 = maxsize;
+    }
+...
+}
+```
+2. 入栈时，先考察栈是否满（top1+1=top2），如果未满，栈1入栈时top1自加，栈2入栈时top2自减；
+```
+public boolean push(T ele, int stackNum) throws Exception {
+    if (top1 + 1 == top2) {
+        throw new Exception("栈空间已满");
+    }
+    if (stackNum != 1 && stackNum != 2) {
+        throw new Exception("栈序号错误，只能是1或2");
+    }
+    if (stackNum == 1) {
+        data[++top1] = ele;
+    } else {
+        data[--top2] = ele;
+    }
+    return true;
+}
+```
+3. 出栈时，判断栈是否为空，栈1为空时top1=-1；栈2为空时top2=maxsize
+```
+public T pop(int stackNum) throws Exception {
+    if (stackNum != 1 && stackNum != 2) {
+        throw new Exception("栈序号错误，只能是1或2");
+    }
+
+    if (stackNum == 1) {
+        if (top1 == -1) {
+            throw new Exception("栈1为空");
+        }
+        return data[top1--];
+    } else {
+        if (top2 == maxsize) {
+            throw new Exception("栈2为空");
+        }
+        return data[top2++];
+    }
+}
+```
+
+**练习**
+1. 逆波兰表达式求解
+2. 简易计算机（LeetCode）
+
+#### 循环队列
+队列是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。队列是一种先进先出的线性表  
+循环队列引入了两个指针，front指向对头元素，rear指向对尾元素的下一个位置（注意不是最后一个元素，是最后一个元素的以一个位置）。当front=rear时，循环队列为空；当**(rear+1)%maxsize=front**时，队列满。队列长度的计算公式是：**(rear-front+maxsize)%maxsize**  
+**实现**  
+1. 定义循环队列，初始化front和rear为0
+```
+public class SqQueue<T> {
+    private T[] data;
+    private int front;
+    private int rear;
+    private int maxsize;
+
+    public SqQueue(Class<T> type, int maxsize) {
+        this.front = 0;
+        this.rear = 0;
+        data = (T[]) Array.newInstance(type, maxsize);
+        this.maxsize = maxsize;
+    }
+...
+}
+```
+2. 入队时，先判断队列是否已满（**(rear+1)%maxsize=front**），未满则入队，同时rear自加
+```
+public boolean enQueue(T ele) throws Exception {
+    if ((rear + 1) % maxsize == front) {
+        throw new Exception("队列已满");
+    }
+    data[rear] = ele;
+    rear = (rear + 1) % maxsize;
+    return true;
+}
+```
+3. 出队时，先判断队列是否为空（front=rear），不为空时则出对，同时front自加
+```
+public T deQueue() throws Exception {
+    if (rear == front) {
+        throw new Exception("队列为空");
+    }
+    T res = data[front];
+    front = (front + 1) % maxsize;
+    return res;
+}
+```

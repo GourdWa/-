@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DataStructure.iml" filepath="$PROJECT_DIR$/DataStructure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StackAndQueue/StackAndQueue.iml" filepath="$PROJECT_DIR$/StackAndQueue/StackAndQueue.iml" />
       <module fileurl="file://$PROJECT_DIR$/linear_table/linear_table.iml" filepath="$PROJECT_DIR$/linear_table/linear_table.iml" />
     </modules>
   </component>
