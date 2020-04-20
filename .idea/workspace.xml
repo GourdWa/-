@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e4dbbac-5249-409a-9150-618ae30b493d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/StackAndQueue/src/com/learn/domain/BasicCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StackAndQueue/src/com/learn/domain/EvaluateReversePolishNotation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StackAndQueue/src/com/learn/domain/SqDoubleStackTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StackAndQueue/src/com/learn/domain/SqQueueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StackAndQueue/src/com/learn/domain/SqStackTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StackAndQueue/src/com/learn/queue/SqQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StackAndQueue/src/com/learn/stack/SqDoubleStack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StackAndQueue/src/com/learn/stack/SqStack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StackAndQueue/基本计算器.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/string/src/com/learn/GetNext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/string/src/com/learn/KMP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/string/string.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -41,6 +34,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
@@ -72,7 +66,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SqQueueTest.deQueue">
+  <component name="RunManager" selected="Application.KMP">
     <configuration name="BasicCalculator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.learn.domain.BasicCalculator" />
       <module name="StackAndQueue" />
@@ -86,12 +80,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EvaluateReversePolishNotation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.EvaluateReversePolishNotation" />
-      <module name="StackAndQueue" />
+    <configuration name="GetNext" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.GetNext" />
+      <module name="string" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.learn.domain.*" />
+          <option name="PATTERN" value="com.learn.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -99,18 +93,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SqDoubleStackTest.pop" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="StackAndQueue" />
+    <configuration name="KMP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.KMP" />
+      <module name="string" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.learn.domain.*" />
+          <option name="PATTERN" value="com.learn.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.learn.domain" />
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.SqDoubleStackTest" />
-      <option name="METHOD_NAME" value="pop" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -149,11 +140,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.KMP" />
+        <item itemvalue="Application.GetNext" />
         <item itemvalue="JUnit.SqQueueTest.deQueue" />
         <item itemvalue="JUnit.SqQueueTest.enQueue" />
         <item itemvalue="Application.BasicCalculator" />
-        <item itemvalue="Application.EvaluateReversePolishNotation" />
-        <item itemvalue="JUnit.SqDoubleStackTest.pop" />
       </list>
     </recent_temporary>
   </component>
@@ -172,7 +163,9 @@
       <workItem from="1586823794784" duration="12783000" />
       <workItem from="1586957856542" duration="1444000" />
       <workItem from="1587034469036" duration="7339000" />
-      <workItem from="1587090263084" duration="11823000" />
+      <workItem from="1587090263084" duration="12490000" />
+      <workItem from="1587370297405" duration="7296000" />
+      <workItem from="1587395945495" duration="2225000" />
     </task>
     <servers />
   </component>
@@ -219,6 +212,16 @@
           <url>file://$PROJECT_DIR$/StackAndQueue/src/com/learn/domain/BasicCalculator.java</url>
           <line>78</line>
           <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/string/src/com/learn/GetNext.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/string/src/com/learn/KMP.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
