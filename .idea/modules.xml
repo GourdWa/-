@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DataStructure.iml" filepath="$PROJECT_DIR$/DataStructure.iml" />
       <module fileurl="file://$PROJECT_DIR$/StackAndQueue/StackAndQueue.iml" filepath="$PROJECT_DIR$/StackAndQueue/StackAndQueue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binary_tree/binary_tree.iml" filepath="$PROJECT_DIR$/binary_tree/binary_tree.iml" />
       <module fileurl="file://$PROJECT_DIR$/linear_table/linear_table.iml" filepath="$PROJECT_DIR$/linear_table/linear_table.iml" />
       <module fileurl="file://$PROJECT_DIR$/string/string.iml" filepath="$PROJECT_DIR$/string/string.iml" />
     </modules>

@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e4dbbac-5249-409a-9150-618ae30b493d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/string/src/com/learn/GetNext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/string/src/com/learn/KMP.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/string/string.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/binary_tree/binary_tree.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/binary_tree/src/com/learn/BiTTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/binary_tree/src/com/learn/domain/DequeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/binary_tree/src/com/learn/domain/TraverseTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/binary_tree/src/com/learn/utils/BiTTraverse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -66,10 +68,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.KMP">
-    <configuration name="BasicCalculator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.BasicCalculator" />
-      <module name="StackAndQueue" />
+  <component name="RunManager" selected="Application.TraverseTest">
+    <configuration name="DequeTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.domain.DequeTest" />
+      <module name="binary_tree" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.learn.domain.*" />
@@ -85,7 +87,7 @@
       <module name="string" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.learn.*" />
+          <option name="PATTERN" value="com.learn.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -98,7 +100,20 @@
       <module name="string" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.learn.*" />
+          <option name="PATTERN" value="com.learn.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TraverseTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.domain.TraverseTest" />
+      <module name="binary_tree" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.learn.domain.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -122,29 +137,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SqQueueTest.enQueue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="StackAndQueue" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.learn.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.learn.domain" />
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.SqQueueTest" />
-      <option name="METHOD_NAME" value="enQueue" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TraverseTest" />
+        <item itemvalue="Application.DequeTest" />
         <item itemvalue="Application.KMP" />
         <item itemvalue="Application.GetNext" />
         <item itemvalue="JUnit.SqQueueTest.deQueue" />
-        <item itemvalue="JUnit.SqQueueTest.enQueue" />
-        <item itemvalue="Application.BasicCalculator" />
       </list>
     </recent_temporary>
   </component>
@@ -165,7 +164,9 @@
       <workItem from="1587034469036" duration="7339000" />
       <workItem from="1587090263084" duration="12490000" />
       <workItem from="1587370297405" duration="7296000" />
-      <workItem from="1587395945495" duration="2225000" />
+      <workItem from="1587395945495" duration="2457000" />
+      <workItem from="1587435975884" duration="419000" />
+      <workItem from="1587458000211" duration="10948000" />
     </task>
     <servers />
   </component>
@@ -222,6 +223,16 @@
           <url>file://$PROJECT_DIR$/string/src/com/learn/KMP.java</url>
           <line>14</line>
           <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/binary_tree/src/com/learn/utils/BiTTraverse.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/binary_tree/src/com/learn/domain/DequeTest.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
