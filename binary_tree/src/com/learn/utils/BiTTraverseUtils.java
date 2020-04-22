@@ -9,7 +9,8 @@ import java.util.*;
  * @create 2020-04-21  20:56
  * @description
  */
-public class BiTTraverse {
+public class BiTTraverseUtils {
+    private static int i = -1;
 
     /**
      * 二叉树递归前序遍历
@@ -42,10 +43,8 @@ public class BiTTraverse {
                 stack.push(tNode);
                 tNode = tNode.getLchild();
             }
-            if (!stack.isEmpty()) {
-                BiTTree topNode = stack.pop();
-                tNode = topNode.getRchild();
-            }
+            BiTTree popTree = stack.pop();
+            tNode = popTree.getRchild();
         }
         return list;
     }
@@ -79,12 +78,9 @@ public class BiTTraverse {
                 stack.push(tNode);
                 tNode = tNode.getLchild();
             }
-            if (!stack.isEmpty()) {
-                BiTTree topNode = stack.pop();
-                list.add(topNode.getData());
-                tNode = topNode.getRchild();
-            }
-
+            BiTTree popTree = stack.pop();
+            list.add(popTree.getData());
+            tNode = popTree.getRchild();
         }
         return list;
     }
@@ -131,4 +127,38 @@ public class BiTTraverse {
         }
         return list;
     }
+
+    public static BiTTree preCreat(BiTTree btnode) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("输入结点的值");
+        int value = in.nextInt();
+        if (value != 0) {
+            btnode = new BiTTree();
+            btnode.setData(value);
+            //以下两行是核心代码
+            btnode.setLchild(preCreat(btnode.getLchild()));
+            btnode.setRchild(preCreat(btnode.getRchild()));
+        } else
+            //这个是一定要有的，确定最终的结束结点
+            btnode = null;
+        return btnode;
+    }
+
+
+    public static BiTTree createBitTree(BiTTree node, int[] nums) {
+        if (i < nums.length) {
+            i += 1;
+            if (nums[i] != -1) {
+                node = new BiTTree();
+                node.setData(nums[i]);
+                node.setLchild(createBitTree(node.getLchild(), nums));
+                node.setRchild(createBitTree(node.getRchild(), nums));
+            } else {
+                node = null;
+            }
+
+        }
+        return node;
+    }
+
 }

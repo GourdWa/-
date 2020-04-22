@@ -355,3 +355,203 @@ public T deQueue() throws Exception {
     return res;
 }
 ```
+### 第六章
+----
+#### 二叉树
+* **斜树**：所有节点都只有左子树的二叉树叫左斜树；所有节点都只有右子树的二叉树叫右斜树
+* **满二叉树**：在一颗二叉树中，所有分支节点都存在左子树和右子树，且所有叶子节点都在同一层上，这样的二叉树叫做满二叉树
+* **完全二叉树**：对一棵具有n个节点的二叉树按层序编号，如果编号i的节点与同样深度的满二叉树中编号为i的节点在二叉树中位置完全相同，则这棵二叉树称为完全二叉树 
+### 二叉树的三种遍历方式（难点在于非递归遍历）
+#### 二叉树的先序遍历递归和非递归实现
+```
+/**
+ * 二叉树递归先序遍历
+ *
+ * @param tree
+ * @param list 前序遍历的结果
+ * @return
+ */
+public static void preOrderTraverseByRecursion(BiTTree tree, List<Integer> list) {
+    if (tree != null) {
+        list.add(tree.getData());
+        preOrderTraverseByRecursion(tree.getLchild(), list);
+        preOrderTraverseByRecursion(tree.getRchild(), list);
+    }
+}
+
+/**
+ * 二叉树的非递归先序遍历
+ *
+ * @param tree
+ * @return 先序遍历的结果
+ */
+public static List<Integer> preOrderTraverse(BiTTree tree) {
+    Deque<BiTTree> stack = new LinkedList<>();
+    List<Integer> list = new ArrayList<>();
+    BiTTree tNode = tree;
+    while (tNode != null || !stack.isEmpty()) {
+        while (tNode != null) {
+            list.add(tNode.getData());
+            stack.push(tNode);
+            tNode = tNode.getLchild();
+        }
+        BiTTree popTree = stack.pop();
+        tNode = popTree.getRchild();
+    }
+    return list;
+}
+```
+#### 二叉树的中序遍历递归和非递归实现
+```
+/**
+ * 二叉树递归中序遍历
+ *
+ * @param tree
+ * @param list
+ */
+public static void inOrderTraverseByRecursion(BiTTree tree, List<Integer> list) {
+    if (tree != null) {
+        inOrderTraverseByRecursion(tree.getLchild(), list);
+        list.add(tree.getData());
+        inOrderTraverseByRecursion(tree.getRchild(), list);
+    }
+}
+
+/**
+ * 二叉树的非递归中序遍历
+ *
+ * @param tree
+ * @return
+ */
+public static List<Integer> inOrderTraverse(BiTTree tree) {
+    List<Integer> list = new ArrayList<>();
+    Deque<BiTTree> stack = new LinkedList<>();
+    BiTTree tNode = tree;
+    while (tNode != null || !stack.isEmpty()) {
+        while (tNode != null) {
+            stack.push(tNode);
+            tNode = tNode.getLchild();
+        }
+        BiTTree popTree = stack.pop();
+        list.add(popTree.getData());
+        tNode = popTree.getRchild();
+    }
+    return list;
+}
+```
+#### 二叉树的后序遍历递归和非递归实现
+```
+/**
+ * 二叉树递归后序遍历
+ *
+ * @param tree
+ * @param list
+ */
+public static void postOrderTraverseByRecursion(BiTTree tree, List<Integer> list) {
+    if (tree != null) {
+        postOrderTraverseByRecursion(tree.getLchild(), list);
+        postOrderTraverseByRecursion(tree.getRchild(), list);
+        list.add(tree.getData());
+    }
+}
+
+/**
+ * 二叉树的非递归后序遍历
+ *
+ * @param tree
+ * @return
+ */
+public static List<Integer> postOrderTraverse(BiTTree tree) {
+    List<Integer> list = new ArrayList<>();
+    Deque<BiTTree> stack = new LinkedList<>();
+    BiTTree curNode = null;
+    BiTTree preNode = null;
+    stack.add(tree);
+    while (!stack.isEmpty()) {
+        curNode = stack.peek();
+        if ((curNode.getRchild() == null && curNode.getLchild() == null) ||
+                (preNode != null && (preNode == curNode.getLchild() || preNode == curNode.getRchild()))) {
+            list.add(curNode.getData());
+            stack.pop();
+            preNode = curNode;
+        } else {
+            if (curNode.getRchild() != null)
+                stack.push(curNode.getRchild());
+            if (curNode.getLchild() != null)
+                stack.push(curNode.getLchild());
+        }
+    }
+    return list;
+}
+```
+#### 二叉树的建立
+基于**先序遍历的扩展二叉树**使用递归建立二叉树，传递先序的扩展二叉树数组，使用递归的方式建立二叉树  
+扩展二叉树可以唯一的确定一个二叉树；先序遍历和中序遍历也能唯一确定一棵二叉树；中序遍历和后序遍历也能唯一确定一棵二叉树；但是先序遍历和后续遍历不能唯一确定一棵二叉树  
+> 说明  
+> 数组中的-1代表扩展出来的节点（也就是这个节点本身并不存在）  
+> 例如一棵二叉树的先序遍历是：1 2 4 3 5；中序遍历是：2 4 1 5 3；那么这棵二叉树的扩展二叉树按先序遍历的结果是：1 2 -1 4 -1 -1 3 5 -1 -1 -1
+```
+public static BiTTree createBitTree(BiTTree node, int[] nums) {
+    if (i < nums.length) {
+        i += 1;
+        if (nums[i] != -1) {
+            node = new BiTTree();
+            node.setData(nums[i]);
+            node.setLchild(createBitTree(node.getLchild(), nums));
+            node.setRchild(createBitTree(node.getRchild(), nums));
+        } else {
+            node = null;
+        }
+
+    }
+    return node;
+}
+```
+### 线索二叉树
+如果一个节点的左子树为null，则将其左子树指向其前驱节点；如果一个节点的右子树为null，则将其右子树指向其后继节点。例如二叉树中序遍历：2 4 1 5 3（先序遍历1 2 4 3 5）。对于中序遍历线索二叉树，4节点的前驱节点是2，5节点的后继节点是3,5节点的前驱节点是1  
+需要值得注意的是，线索化二叉树后，怎么知道一个节点的左节点是其前驱节点还是其左子树（右节点是后继节点还是其右子树）。为了解决这个问题，在线索化二叉树时，引入两个布尔量：lType,rType。默认都为false，代表其左右节点都是其子树，当设置为true时，代表其节点存储了响应的前驱或后继节点。  
+通过上面的线索化二叉树可以充分利用二叉树的空间，同时，有利于二叉树的访问    
+**中序线索化二叉树**  
+```
+/**
+ * 线索化二叉树
+ *
+ * @param node
+ */
+public static void threadNodes(ThreadBiTree node) {
+    if (node != null) {
+        threadNodes(node.getLchild());
+        //先处理当前节点的前驱节点（左指针）
+        if (node.getLchild() == null) {
+            //当前节点的左指针指向前驱节点
+            node.setLchild(pre);
+            node.setlType(true);
+        }
+        if (pre != null && pre.getRchild() == null) {
+            //后继节点
+            pre.setRchild(node);
+            pre.setrType(true);
+        }
+        pre = node;
+        threadNodes(node.getRchild());
+    }
+}
+```
+**中序线索化二叉树的遍历**  
+```
+    public static void inOrderTraverseThread(ThreadBiTree node) {
+        while (node != null) {
+            while (!node.getlType()) {
+                node = node.getLchild();
+            }
+            System.out.print(node.getData() + " ");
+            while (node.getrType()) {
+				//此时，node节点的右节点其实存储的是该节点的后继节点
+                node = node.getRchild();
+                System.out.print(node.getData() + " ");
+            }
+			//当退出循环时，说明node节点的右子树存在
+            node = node.getRchild();
+        }
+    }
+``` 

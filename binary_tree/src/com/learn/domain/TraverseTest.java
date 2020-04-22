@@ -1,7 +1,7 @@
 package com.learn.domain;
 
 import com.learn.BiTTree;
-import com.learn.utils.BiTTraverse;
+import com.learn.utils.BiTTraverseUtils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -37,16 +37,16 @@ public class TraverseTest {
         List<Integer> preOrder = new LinkedList<>();
         List<Integer> inOrder = new LinkedList<>();
         List<Integer> postOrder = new LinkedList<>();
-        BiTTraverse.preOrderTraverseByRecursion(a,preOrder);
-        BiTTraverse.inOrderTraverseByRecursion(a,inOrder);
-        BiTTraverse.postOrderTraverseByRecursion(a,postOrder);
+        BiTTraverseUtils.preOrderTraverseByRecursion(a,preOrder);
+        BiTTraverseUtils.inOrderTraverseByRecursion(a,inOrder);
+        BiTTraverseUtils.postOrderTraverseByRecursion(a,postOrder);
         System.out.println("递归遍历：先序遍历、中序遍历、后序遍历");
         System.out.println(preOrder);
         System.out.println(inOrder);
         System.out.println(postOrder);
-        preOrder=  BiTTraverse.preOrderTraverse(a);
-        inOrder=  BiTTraverse.inOrderTraverse(a);
-        postOrder=  BiTTraverse.postOrderTraverse(a);
+        preOrder=  BiTTraverseUtils.preOrderTraverse(a);
+        inOrder=  BiTTraverseUtils.inOrderTraverse(a);
+        postOrder=  BiTTraverseUtils.postOrderTraverse(a);
         System.out.println("非递归遍历：先序遍历、中序遍历、后序遍历");
         System.out.println(preOrder);
         System.out.println(inOrder);
