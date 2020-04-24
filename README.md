@@ -314,7 +314,7 @@ public T pop(int stackNum) throws Exception {
 
 #### 循环队列
 队列是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。队列是一种先进先出的线性表  
-循环队列引入了两个指针，front指向对头元素，rear指向对尾元素的下一个位置（注意不是最后一个元素，是最后一个元素的以一个位置）。当front=rear时，循环队列为空；当**(rear+1)%maxsize=front**时，队列满。队列长度的计算公式是：**(rear-front+maxsize)%maxsize**  
+循环队列引入了两个指针，front指向对头元素，rear指向对尾元素的下一个位置（注意不是最后一个元素，是最后一个元素的以一个位置）。当front=rear时，循环队列为空；当 **(rear+1)%maxsize=front时**，队列满。队列长度的计算公式是：**(rear-front+maxsize)%maxsize**  
 **实现**  
 1. 定义循环队列，初始化front和rear为0
 ```
@@ -555,3 +555,7 @@ public static void threadNodes(ThreadBiTree node) {
         }
     }
 ``` 
+**练习**
+1. 利用递归求解二叉树的深度，DFS 
+2. 层级遍历二叉树，主要使用BFS
+3. 结合求二叉树的深度，判断一棵二叉树是否是平衡二叉树

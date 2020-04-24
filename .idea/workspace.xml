@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e4dbbac-5249-409a-9150-618ae30b493d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/binary_tree/src/com/learn/ThreadBiTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/binary_tree/src/com/learn/domain/CreateTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/binary_tree/src/com/learn/domain/ThreadBiTreeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/binary_tree/src/com/learn/utils/ThreadBiTreeUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/binary_tree/META-INF/binary_tree.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/binary_tree/com/learn/ThreadBiTree.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/binary_tree/com/learn/domain/CreateTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/binary_tree/com/learn/domain/ThreadBiTreeTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/binary_tree/com/learn/utils/BiTTraverseUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/binary_tree/com/learn/utils/ThreadBiTreeUtils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/binary_tree/src/com/learn/domain/BalancedBinaryTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/binary_tree/src/com/learn/domain/BinaryTreeLevelOrderTraversal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binary_tree/src/com/learn/domain/TraverseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/binary_tree/src/com/learn/domain/TraverseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binary_tree/src/com/learn/utils/BiTTraverse.java" beforeDir="false" afterPath="$PROJECT_DIR$/binary_tree/src/com/learn/utils/BiTTraverseUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/binary_tree/com/learn/domain/TraverseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/binary_tree/com/learn/domain/TraverseTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/binary_tree/com/learn/utils/BiTTraverse.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -177,6 +165,7 @@
       <workItem from="1587458000211" duration="10948000" />
       <workItem from="1587522850567" duration="19273000" />
       <workItem from="1587568470495" duration="10000" />
+      <workItem from="1587704502608" duration="5405000" />
     </task>
     <servers />
   </component>
