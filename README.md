@@ -559,3 +559,191 @@ public static void threadNodes(ThreadBiTree node) {
 1. 利用递归求解二叉树的深度，DFS 
 2. 层级遍历二叉树，主要使用BFS
 3. 结合求二叉树的深度，判断一棵二叉树是否是平衡二叉树
+
+### 第七章
+---
+### 定义一个图类
+```
+public class MGraph {
+    //顶点数
+    private int numVertexes;
+    //边数
+    private int numEdges;
+    //顶点表
+    private String[] vexs;
+    //邻接矩阵
+    private int[][] arc;
+	...
+}
+```
+#### 图的遍历
+**深度优先遍历（DFS）**  
+思想：从图中某个顶点v出发，访问此顶点，然后从v的未被访问的邻接点出发深度优先遍历图，直到图中所有和v有路径相同的顶点都被访问到
+```
+public void dfsTraverse(MGraph graph) {
+    //visited数组用来记录那些点被访问过了
+    // 如果点i被访问了，那么visited[i]为true，否则为false
+    visited = new boolean[graph.getNumVertexes()];
+    //graph.getNumVertexes()获得图的顶点数目
+	//如果是连通图，可以不用加这个for循环
+    for (int i = 0; i < graph.getNumVertexes(); i++) {
+        if (!visited[i]) {
+            dfs(graph, i);
+        }
+    }
+}
+
+private void dfs(MGraph graph, int i) {
+    visited[i] = true;
+    System.out.println(graph.getVexs()[i]);//输出顶点，也可以做其他操作
+    //graph.getArc()[i][j] ，邻接矩阵i点到j点是否相通
+    for (int j = 0; j < graph.getNumVertexes(); j++) {
+        if (graph.getArc()[i][j] == 1 && !visited[j]) {
+            dfs(graph, j);
+        }
+    }
+}
+```
+**广度优先遍历（BFS）**  
+思想：BFS算法一般都需要借助一个队列，当访问节点v时，将与节点v相连且未被访问过的节点加入队列（例如节点u），同时节点v出列；访问节点u，并将与节点u相连且未被访问的节点加入队列，u出列，直到所有节点都被访问
+```
+public void bfsTraverse(MGraph graph) {
+    visited = new boolean[graph.getNumVertexes()];
+    Queue<Integer> queue = new LinkedList<>();
+	//如果是连通图，可以不用加这个for循环
+    for (int i = 0; i < graph.getNumVertexes(); i++) {
+        if (!visited[i]) {
+            visited[i] = true;
+            System.out.println(graph.getVexs()[i]);
+            queue.add(i);
+            while (!queue.isEmpty()) {
+                Integer pollEle = queue.poll();
+                for (int j = 0; j < graph.getNumVertexes(); j++) {
+                    //将与
+                    if (graph.getArc()[pollEle][j] == 1 && !visited[j]) {
+                        System.out.println(graph.getVexs()[j]);
+                        queue.add(j);
+                    }
+                }
+            }
+        }
+    }
+}
+``` 
+#### 最小生成树
+在最小生成树中用的图用邻接矩阵表示如下
+```
+private static final int INFINITY = Integer.MAX_VALUE;
+...
+int[][] graph = {
+            {0, 10, INFINITY, INFINITY, INFINITY, 11, INFINITY, INFINITY, INFINITY},
+            {10, 0, 18, INFINITY, INFINITY, INFINITY, 16, INFINITY, 12},
+            {INFINITY, INFINITY, 0, 22, INFINITY, INFINITY, INFINITY, INFINITY, 8},
+            {INFINITY, INFINITY, 22, 0, 20, INFINITY, INFINITY, 16, 21},
+            {INFINITY, INFINITY, INFINITY, 20, 0, 26, INFINITY, 7, INFINITY},
+            {11, INFINITY, INFINITY, INFINITY, 26, 0, 17, INFINITY, INFINITY},
+            {INFINITY, 16, INFINITY, INFINITY, INFINITY, 17, 0, 19, INFINITY},
+            {INFINITY, INFINITY, INFINITY, 16, 7, INFINITY, 19, 0, INFINITY},
+            {INFINITY, 12, 8, 21, INFINITY, INFINITY, INFINITY, INFINITY, 0}
+    };
+```
+**普里姆算法（Prim）**  
+MST（Minimum Spanning Tree，最小生成树）问题有两种通用的解法，Prim算法就是其中之一，它是从点的方面考虑构建一颗MST  
+*思想*：设图G顶点集合为U，首先任意选择图G中的一点作为起始点a，将该点加入集合V，再从集合U-V中找到另一点b使得点b到V中任意一点的权值最小，此时将b点也加入集合V；以此类推，现在的集合V={a，b}，再从集合U-V中找到另一点c使得点c到V中任意一点的权值最小，此时将c点加入集合V，直至所有顶点全部被加入V，此时就构建出了一颗MST。因为有N个顶点，所以该MST就有N-1条边，每一次向集合V中加入一个点，就意味着找到一条MST的边。  
+[Prime算法详细构建最小生成树的步骤](https://blog.csdn.net/yeruby/article/details/38615045)
+```
+public static void prim(int[][] graph, int[] lowcost, int[] adjvex) {
+    int len = lowcost.length;
+    for (int i = 1; i < len; i++) {
+        int min = Integer.MAX_VALUE;
+        int j = 1;
+        int k = 0;
+        while (j < len) {
+            //如果节点j没有加入生成树
+            if (lowcost[j] != 0 && min > lowcost[j]) {
+                k = j;
+                min = lowcost[j];
+            }
+            j++;
+        }
+        System.out.println(adjvex[k] + "==>" + k);
+        lowcost[k] = 0;
+        //将k节点加入生成树之后，更新距离
+        for (j = 1; j < len; j++) {
+            if (lowcost[j] != 0 && graph[k][j] < lowcost[j]) {
+                lowcost[j] = graph[k][j];
+                //代表从k到j的生成树，例如adjvex[3]=7,代表从节点7生成到节点3
+                adjvex[j] = k;
+            }
+        }
+    }
+}
+```
+其中变量lowcost和adjvex的作用和初始化如下，这里假设都是从节点0开始建立最小生成树  
+lowcost[i]=0时，代表顶点i已经加入了最小生成树  
+adjvex[i]=j,代表从顶点j生成到顶点i，例如adjvex[3]=7,代表从节点7生成到节点3  
+```
+int[] adjvex = new int[graph.length];
+int[] lowcost = new int[graph.length];
+for (int i = 0; i < graph.length; i++) {
+    lowcost[i] = graph[0][i];
+}
+```
+**克鲁斯卡尔算法(kruskal)**
+*思想*：克鲁斯卡尔算法是最小生成树的另外一种常用算法。其思想是在所有未选取的边中，找最小边，如果和已选取的边构成回路，则放弃，选取次小边
+1. 将图的所有连接线去掉，只剩顶点
+2. 从图的边集数组中找到权值最小的边，将边的两个顶点连接起来
+3. 继续寻找权值最小的边，将两个顶点之间连接起来，如果选择的边使得最小生成树出现了环路，则放弃该边，选择权值次小的边
+4. 直到所有的顶点都被连接在一起并且没有环路，最小生成树就生成了  
+
+[克鲁斯卡尔算法步骤细节](https://blog.csdn.net/junya_zhang/article/details/83584592)  
+因为Kruskal算法是以边为对象建立最小生成树，因此，需要构建一个**Edge类**
+```
+public class Edge {
+	//边的起始顶点
+    private int begin;
+	//边的结束顶点
+    private int end;
+	//边的权值
+    private int weight;
+	...
+}
+```
+当有了Edge类之后，由于Kruskal算法是每次从未选择的边中选择一个最小的边（如果没有构成环）来构建生成树，因此，在实现算法前将图的邻接矩阵转换为Edge数组，并按从小到大的顺序排序
+```
+List<Edge> edges = new ArrayList<>();
+for (int i = 0; i < graph.length; i++) {
+    for (int j = i + 1; j < graph[i].length; j++) {
+		//如果graph[i][j]存在，则说明顶点i到顶点j构成一条边，起始顶点是i，结束顶点是j，且权值是graph[i][j]
+        if (graph[i][j] != INFINITY) {
+            edges.add(new Edge(i, j, graph[i][j]));
+        }
+    }
+}
+//排序
+edges.sort(Comparator.comparingInt(Edge::getWeight));
+int[] parent = new int[graph.length];
+MGraphUtils.kruskal(edges,parent);
+```
+**parent参数说明**  
+parent[i]=j，当j=0时，说明从顶点i出发没有能到达的点（但是不能说明没有到达顶点i的点）；如果j≠0，例如parent[4]=7，说明从顶点4出发能到达顶点7
+
+```
+public static void kruskal(List<Edge> edges, int[] parent) {
+    for (int i = 0; i < edges.size(); i++) {
+        int n = find(parent, edges.get(i).getBegin());//从该边的起点开始寻找parent数组中为0的元素的下标，
+        int m = find(parent, edges.get(i).getEnd());//从该边的终点点开始寻找parent数组中为0的元素的下标
+        if (n != m) {//如果m=n说明如果连接这条边，则从该边的起点和终点最终都会到达同一顶点，即有环
+            parent[n] = m;
+            System.out.println(edges.get(i).getBegin() + "==>" + edges.get(i).getEnd() + "  " + edges.get(i).getWeight());
+        }
+    }
+}
+
+private static int find(int[] parent, int i) {
+    //说明i节点已经在生成树里了
+    while (parent[i] > 0)
+        i = parent[i];
+    return i;
+}
+```
