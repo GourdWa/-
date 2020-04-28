@@ -747,3 +747,170 @@ private static int find(int[] parent, int i) {
     return i;
 }
 ```
+#### 最短路径问题
+**迪杰斯特拉算法（Dijkstra）**   
+**实现思想**
+1. 通过Dijkstra计算图G中的最短路径时，需要指定起点s(即从顶点s开始计算)。
+2. 此外，引进两个集合S和U。S的作用是记录已求出最短路径的顶点(以及相应的最短路径长度)，而U则是记录还未求出最短路径的顶点(以及该顶点到起点s的距离)。
+3. 初始时，S中只有起点s；U中是除s之外的顶点，并且U中顶点的路径是”起点s到该顶点的路径”。然后，从U中找出路径最短的顶点，并将其加入到S中；接着，更新U中的顶点和顶点对应的路径。 然后，再从U中找出路径最短的顶点，并将其加入到S中；接着，更新U中的顶点和顶点对应的路径。 … 重复该操作，直到遍历完所有顶点。
+
+两个集合可以用一个布尔型的数组来代替，数组的长度与节点数目一样，当第i个顶点在U集合中时对应的数组第i为false；否则为true  
+[通俗易懂的Dijkstra算法原理](https://zhuanlan.zhihu.com/p/40338107)  
+实现代码如下，关键需要理解的是distance数组和visited数组。其中distance数组代表的是每个顶点到起始点的距离，例如distance[k]为第k个顶点到起始点的距离；而visited数组代表的就是集合U和集合S中的顶点。只要理解了这两点整个算法是很简单的
+```
+private static int[] dijksra(int[][] graph, int start) {
+    //distance数组中存储了从起始顶点出发到每个顶点的距离
+    int[] distance = new int[graph.length];
+    //当到达i顶点时，visited[i]设置为true
+    boolean[] visited = new boolean[graph.length];
+    visited[start] = true;
+    int[] trace = new int[graph.length];
+    for (int i = 0; i < distance.length; i++) {
+        distance[i] = graph[start][i];
+    }
+
+    int cnt = 0;
+    while (cnt < distance.length - 1) {
+        int k = 0;
+        int min = Integer.MAX_VALUE;
+        //找到当前未到达的节点中距离最近的节点
+        for (int i = 0; i < distance.length; i++) {
+            if (!visited[i] && distance[i] < min) {
+                k = i;
+                min = distance[i];
+            }
+        }
+        cnt++;
+        visited[k] = true;
+        for (int i = 0; i < distance.length; i++) {
+            //如果顶点i未被访问过，从k顶点能够到达i顶点
+            // 并且从起始点到顶点i的距离大于懂起始点经顶点k再到i的距离，更新最短距离
+            if (!visited[i] && graph[k][i] != Integer.MAX_VALUE && distance[i] > distance[k] + graph[k][i]) {
+                trace[i] = k;
+                distance[i] = distance[k] + graph[k][i];
+            }
+        }
+    }
+
+    System.out.println(Arrays.toString(trace));
+    return distance;
+}
+```
+**弗洛伊德算法（Floyd）**  
+![Floyd图1](https://img-blog.csdn.net/20130501182147975)
+![Floyd公式](https://img-blog.csdn.net/20130501183035414)
+![Floyd图2](https://img-blog.csdn.net/20130501183719888)  
+看图不说话，重要的思想就是引入中转节点，重点实现推导是上面的公式，还不理解就看书，简洁明了
+代码，其中distance变量的初始值等价于graph邻接矩阵，trace的值如下初始化，核心思想就是引入一个中间节点i，当求节点j到k的距离时，先判断j到i的距离加i到k的距离和j到k的距离的大小（也就是上面的公式）。那个小就用谁更新节点
+```
+private static void floyd(int[][] distance, int[][] trace) {
+    for (int i = 0; i < distance.length; i++) {
+        for (int j = 0; j < distance.length; j++) {
+            trace[i][j] = j;
+        }
+    }
+
+    /**
+     * 中转节点为i；起点为j；终点为k
+     */
+    for (int i = 0; i < distance.length; i++) {
+        for (int j = 0; j < distance.length; j++) {
+            for (int k = 0; k < distance.length; k++) {
+                if (distance[j][i] != Integer.MAX_VALUE && distance[i][k] != Integer.MAX_VALUE &&
+                        distance[j][k] > distance[j][i] + distance[i][k]) {
+                    distance[j][k] = distance[j][i] + distance[i][k];
+                    trace[j][k] = trace[j][i];
+                }
+            }
+        }
+    }
+}
+```
+#### 拓扑排序
+在一个有向图中，对所有的节点进行排序，要求没有一个节点指向它前面的节点,先统计所有节点的入度，对于入度为0的节点就可以分离出来，然后把这个节点指向的节点的入度减一,一直做改操作，直到所有的节点都被分离出来。如果最后不存在入度为0的节点，那就说明有环，不存在拓扑排序，也就是很多题目的无解的情况。
+![拓扑排序过程](https://img-blog.csdn.net/20180625175824103?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzEzMjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+典型例题，LeetCode207课程表问题，分为BFS解决和DFS两种思路，但是不管哪种思路都需要使用到邻接链表的思路，也就是找到每个顶点的入度节点，例如上图中e的入度节点是c,f,d  
+在拓扑排序中，其问题的本质可以归结为是否有环，如果图有环，那么是不可能完成拓扑排序的
+```
+public static boolean canFinish(int numCourses, int[][] prerequisites) {
+  /*    //用来存储各个节点
+    Set<Integer> set = new HashSet<>();
+    //存储节点的入度节点，例如节点2有1,3两个入度节点，则inNode.get(2)={1,3}
+    //即要修1,3课程必须先修2课程
+    Map<Integer, ArrayList<Integer>> inNode = new HashMap<>();
+    //存储节点的出度，例如节点2的出度为3，那么outNum.get(2)=
+    //即要修2课程，必须先修3课程
+    Map<Integer, Integer> outNum = new HashMap<>();
+    for (int[] prerequisite : prerequisites) {
+        //要修a课程则必须先修b课程
+        int a = prerequisite[0];
+        int b = prerequisite[1];
+        set.add(a);
+        set.add(b);
+        //课程a的依赖课程加一，也就是要修a课程之前还需要再修一门依赖课程
+        if (!outNum.containsKey(a)) {
+            outNum.put(a, 0);
+        }
+        if (!outNum.containsKey(b)) {
+            outNum.put(b, 0);
+        }
+        outNum.put(a, outNum.get(a) + 1);
+
+        if (!inNode.containsKey(b)) {
+            inNode.put(b, new ArrayList<>());
+        }
+        inNode.get(b).add(a);
+    }
+
+    Queue<Integer> queue = new LinkedList<>();
+    //先找出出度为0的课程，这些课程可以先修
+    for (Integer course : set) {
+        if (0 == outNum.get(course))
+            queue.add(course);
+    }
+
+    while (!queue.isEmpty()) {
+        Integer pollCourse = queue.poll();
+        //找到需要先修pollCourse的课程，并将这些课程的出度减1
+        List<Integer> list = inNode.getOrDefault(pollCourse, null);
+        if (list != null) {
+            for (Integer i : list) {
+                //如果i课程只依赖pollCourse课程，那么在pollCourse课程修完后就可以修i课程了
+                //因此将i课程放入队列
+                if (outNum.get(i) == 1) {
+                    queue.add(i);
+                }
+                outNum.put(i, outNum.get(i) - 1);
+            }
+        }
+    }
+    for (Integer course : set) {
+        if (outNum.get(course) != 0)
+            return false;
+    }
+    return true;*/
+    int[] flags = new int[numCourses];
+    List<List<Integer>> list = new ArrayList<>();
+    for (int i = 0; i < numCourses; i++)
+        list.add(new ArrayList<>());
+    for (int[] prerequisite : prerequisites)
+        list.get(prerequisite[1]).add(prerequisite[0]);
+    for (int i = 0; i < numCourses; i++)
+        if (!dfs(list, flags, i))
+            return false;
+    return true;
+}
+
+public static boolean dfs(List<List<Integer>> list, int[] flags, int i) {
+    if (flags[i] == 1)
+        return false;
+    if (flags[i] == -1)
+        return true;
+    flags[i] = 1;
+    for (Integer j : list.get(i))
+        if (!dfs(list, flags, j))
+            return false;
+    flags[i] = -1;
+    return true;
+}
+```

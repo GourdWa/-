@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e4dbbac-5249-409a-9150-618ae30b493d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/graph/graph.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/bean/Edge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/bean/MGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/KruskalTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/PrimTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/utils/MGraphUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/DijksraTesst.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/FloydTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/LeetCode210.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/LeetCode56.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/TopologySort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/TuopuSort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -72,22 +71,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.KruskalTest">
-    <configuration name="CreateTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.CreateTest" />
-      <module name="binary_tree" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.learn.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KruskalTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.KruskalTest" />
+  <component name="RunManager" selected="Application.LeetCode210">
+    <configuration name="DijksraTesst" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.domain.DijksraTesst" />
       <module name="graph" />
       <extension name="coverage">
         <pattern>
@@ -99,8 +85,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PrimTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.PrimTest" />
+    <configuration name="LeetCode210" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.domain.LeetCode210" />
       <module name="graph" />
       <extension name="coverage">
         <pattern>
@@ -112,9 +98,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ThreadBiTreeTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.ThreadBiTreeTest" />
-      <module name="binary_tree" />
+    <configuration name="LeetCode56" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.domain.LeetCode56" />
+      <module name="graph" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.learn.domain.*" />
@@ -125,9 +111,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TraverseTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.TraverseTest" />
-      <module name="binary_tree" />
+    <configuration name="TopologySort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.domain.TopologySort" />
+      <module name="graph" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.learn.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TuopuSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.domain.TuopuSort" />
+      <module name="graph" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.learn.domain.*" />
@@ -140,11 +139,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.KruskalTest" />
-        <item itemvalue="Application.PrimTest" />
-        <item itemvalue="Application.ThreadBiTreeTest" />
-        <item itemvalue="Application.CreateTest" />
-        <item itemvalue="Application.TraverseTest" />
+        <item itemvalue="Application.LeetCode210" />
+        <item itemvalue="Application.LeetCode56" />
+        <item itemvalue="Application.TopologySort" />
+        <item itemvalue="Application.TuopuSort" />
+        <item itemvalue="Application.DijksraTesst" />
       </list>
     </recent_temporary>
   </component>
@@ -174,6 +173,9 @@
       <workItem from="1587818633737" duration="3759000" />
       <workItem from="1587865506367" duration="11380000" />
       <workItem from="1587896230928" duration="4907000" />
+      <workItem from="1587991474515" duration="7415000" />
+      <workItem from="1588033081964" duration="11424000" />
+      <workItem from="1588075150673" duration="6242000" />
     </task>
     <servers />
   </component>
@@ -258,6 +260,31 @@
           <url>file://$PROJECT_DIR$/binary_tree/src/com/learn/domain/ThreadBiTreeTest.java</url>
           <line>16</line>
           <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graph/src/com/learn/domain/DijksraTesst.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graph/src/com/learn/domain/FloydTest.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graph/src/com/learn/domain/TuopuSort.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graph/src/com/learn/domain/LeetCode56.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graph/src/com/learn/domain/LeetCode210.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="73" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
