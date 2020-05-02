@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e4dbbac-5249-409a-9150-618ae30b493d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/DijksraTesst.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/FloydTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/LeetCode210.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/LeetCode56.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/TopologySort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graph/src/com/learn/domain/TuopuSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/find/find.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/find/src/com/learn/domain/DeleteBST.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/find/src/com/learn/domain/InsertBST.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/find/src/com/learn/domain/MyHashTableTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/find/src/com/learn/domain/SearchBST.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/find/src/com/learn/hash/MyHashTable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/find/src/com/learn/tree/BitNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/find/src/com/learn/utils/CreateTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -71,10 +74,23 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.LeetCode210">
-    <configuration name="DijksraTesst" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.DijksraTesst" />
-      <module name="graph" />
+  <component name="RunManager" selected="Application.DeleteBST">
+    <configuration name="DeleteBST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.domain.DeleteBST" />
+      <module name="find" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.learn.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InsertBST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.domain.InsertBST" />
+      <module name="find" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.learn.domain.*" />
@@ -98,9 +114,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LeetCode56" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.LeetCode56" />
-      <module name="graph" />
+    <configuration name="MyHashTableTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.domain.MyHashTableTest" />
+      <module name="find" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.learn.domain.*" />
@@ -111,22 +127,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TopologySort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.TopologySort" />
-      <module name="graph" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.learn.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TuopuSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.TuopuSort" />
-      <module name="graph" />
+    <configuration name="SearchBST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.domain.SearchBST" />
+      <module name="find" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.learn.domain.*" />
@@ -139,11 +142,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DeleteBST" />
+        <item itemvalue="Application.MyHashTableTest" />
+        <item itemvalue="Application.InsertBST" />
+        <item itemvalue="Application.SearchBST" />
         <item itemvalue="Application.LeetCode210" />
-        <item itemvalue="Application.LeetCode56" />
-        <item itemvalue="Application.TopologySort" />
-        <item itemvalue="Application.TuopuSort" />
-        <item itemvalue="Application.DijksraTesst" />
       </list>
     </recent_temporary>
   </component>
@@ -176,6 +179,10 @@
       <workItem from="1587991474515" duration="7415000" />
       <workItem from="1588033081964" duration="11424000" />
       <workItem from="1588075150673" duration="6242000" />
+      <workItem from="1588124901512" duration="628000" />
+      <workItem from="1588143527875" duration="12769000" />
+      <workItem from="1588298488906" duration="9095000" />
+      <workItem from="1588403928255" duration="1309000" />
     </task>
     <servers />
   </component>
@@ -285,6 +292,31 @@
           <url>file://$PROJECT_DIR$/graph/src/com/learn/domain/LeetCode210.java</url>
           <line>84</line>
           <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/find/src/com/learn/domain/SearchBST.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/find/src/com/learn/domain/InsertBST.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/find/src/com/learn/hash/MyHashTable.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/find/src/com/learn/domain/MyHashTableTest.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/find/src/com/learn/domain/DeleteBST.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="96" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

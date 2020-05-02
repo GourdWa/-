@@ -827,8 +827,9 @@ private static void floyd(int[][] distance, int[][] trace) {
 }
 ```
 #### 拓扑排序
-在一个有向图中，对所有的节点进行排序，要求没有一个节点指向它前面的节点,先统计所有节点的入度，对于入度为0的节点就可以分离出来，然后把这个节点指向的节点的入度减一,一直做改操作，直到所有的节点都被分离出来。如果最后不存在入度为0的节点，那就说明有环，不存在拓扑排序，也就是很多题目的无解的情况。
-![拓扑排序过程](https://img-blog.csdn.net/20180625175824103?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzEzMjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+在一个有向图中，对所有的节点进行排序，要求没有一个节点指向它前面的节点,先统计所有节点的入度，对于入度为0的节点就可以分离出来，然后把这个节点指向的节点的入度减一,一直做改操作，直到所有的节点都被分离出来。如果最后不存在入度为0的节点，那就说明有环，不存在拓扑排序，也就是很多题目的无解的情况。    
+
+[拓扑排序过程](https://img-blog.csdn.net/20180625175824103?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzEzMjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)  
 典型例题，LeetCode207课程表问题，分为BFS解决和DFS两种思路，但是不管哪种思路都需要使用到邻接链表的思路，也就是找到每个顶点的入度节点，例如上图中e的入度节点是c,f,d  
 在拓扑排序中，其问题的本质可以归结为是否有环，如果图有环，那么是不可能完成拓扑排序的
 ```
@@ -914,3 +915,320 @@ public static boolean dfs(List<List<Integer>> list, int[] flags, int i) {
     return true;
 }
 ```
+
+## 第八章 查找
+---
+### 顺序查找
+顺序查找是最基本的查找方法，俗称暴力查找，也就是从第一个元素开始逐个与待查找的元素进行匹配。若匹配成功则说明查找成功，如果查到最后一个元素都没有匹配成功即说明表中没有查找的元素，时间复杂度是O(n)  
+### 二分查找
+二分查找也叫折半查找。这种查找实现的前提是线性表是有序的。每次用表中的中间元素与待查元素比较，如果待查元素大于中间元素，则继续在右半区间继续查找，否则在左半区间进行查找，直到找到待查元素。时间复杂度是O(logn)
+```
+public int binarySearch(int[] nums, int target) {
+    int start = 0;
+    int end = nums.length - 1;
+    int mid = 0;
+    while(end >= start)
+    {
+      mid = start + (end - start) / 2;
+        if(nums[mid] > target)
+            end = mid - 1;
+        else if(nums[mid] < target)
+            start = mid + 1;
+        else
+            return mid;
+    }
+    return -1;
+}
+```
+### 插值查找
+二分查找的关键迭代代码是
+> mid = start + (end - start)/2  
+
+
+插值查找的关键迭代代码是
+> mid = start + (end - start)*(target - nums[start])/(nums[end] - nums[start])
+
+通过对比可以发现，实质就是将二分查找中的系数1/2用(target - nums[start])/(nums[end] - nums[start])代替了  
+从时间复杂度来看，二分查找和插值查找的时间复杂度都是O(logn)。但是对于表长较大，且数据分布均匀的查找表来说，插值查找的平均性能要比二分查找好  
+
+
+### 二叉排序树
+二叉排序树又称二叉查找树，它要么是一棵空树，或者是具有以下性质的二叉树
+* 若它的左子树不为空，则左子树上所有节点的值均小于它的根节点的值
+* 若它的右子树不为空，则右子树上所有节点的值均大于它的根节点的值
+* 二叉排序树的左、右子树也分别为二叉排序树
+
+**二叉排序树的查找操作**
+```
+public class SearchBST {
+    //p始终指向查找节点的父节点
+    private static BitNode p = null;
+
+    /**
+     * 返回要查找的节点，如果存在则返回，不存在则返回null
+     * @param node
+     * @param val
+     * @return
+     */
+    public static BitNode searchBst(BitNode node, int val) {
+        if (node == null)
+            return null;
+        if (node.getData() == val)
+            return node;
+        if (node.getData() > val) {
+            p = node;
+            return searchBst(node.getLeft(), val);
+        } else {
+            p = node;
+            return searchBst(node.getRight(), val);
+        }
+    }
+	...
+}
+```
+比较简单的递归查找，值得注意的是在这里我引进了一个节点p，这个节点在树不为空时，始终指向带查找节点的父节点。p节点在插入和删除节点时有大用处  
+**二叉排序树的插入操作**  
+思路  
+1. 先在二叉排序树中查找要插入的元素是否已经存在，如果存在则插入失败
+2. 如果待插入的元素在二叉排序树中不存在，则将待插入的元素插入到二叉排序树的叶节点
+
+```
+public static boolean insertBST(BitNode root, int val) {
+    //如果原有的二叉搜索树中不存在val值节点
+    BitNode bitNode = searchBst(root, val);
+    if (searchBst(root, val) == null) {
+        //如果p等于null说明原本传入的二叉树就是空树
+        if (p == null)
+            p = new BitNode(val);
+        else if (p.getData() > val)
+            p.setLeft(new BitNode(val));
+        else
+            p.setRight(new BitNode(val));
+        return true;
+    }
+    return false;
+}
+```
+可以断言，如果带插入的元素在二叉排序树中不存在，p节点至多有一个孩子节点  
+**二叉排序树的删除操作**  
+思路
+1. 要删除二叉排序树中的某一个节点的前提是该节点存在，因此第一步是查找到要删除的节点
+2. 当查找到要删除的节点的位置时，需要判断该节点是叶节点还是只有一个孩子或者还是只有两个孩子
+	1. 如果待删除的节点是叶节点，那么删除这个节点对整个二叉排序树的结构并无影响，因此可以直接删除
+	2. 如果待删除的节点只有一个左孩子或者右孩子，当删除这个节点时只需要用这个节点的孩子节点覆盖要删除的节点即可
+	3. 如果待删除的节点既有左孩子又有右孩子，此时需要用待删除节点的前驱节点（中序遍历）或后继节点（中序遍历）来覆盖待删除的节点，之后再删除该节点的前驱节点或者后继节点（使用那个节点覆盖就删除那个节点）
+
+代码中的p节点依然是指向将要删除节点的父节点，这里始终假设待删除的二叉排序树不为空
+
+```
+public static boolean deleteBST(BitNode node, int val) {
+    if (node == null)
+        return false;
+    if (node.getData() == val) {
+        return delete(node);
+    } else if (val < node.getData()) {
+        p = node;
+        return deleteBST(node.getLeft(), val);
+    } else {
+        p = node;
+        return deleteBST(node.getRight(), val);
+    }
+}
+
+private static boolean delete(BitNode delNode) {
+    if (delNode.getLeft() == null) {
+        //如果待删除的节点的左节点为空
+        if (p == null) {
+            //如果删除的是根节点
+            delNode.setData(delNode.getRight().getData());
+            delNode.setLeft(delNode.getRight().getLeft());
+            delNode.setRight(delNode.getRight().getRight());
+        } else if (p.getRight() == delNode) {
+            p.setRight(delNode.getRight());
+        } else {
+            p.setLeft(delNode.getRight());
+        }
+    } else if (delNode.getRight() == null) {
+        //如果待删除的节点的右节点为空
+        if (p == null) {
+            delNode.setData(delNode.getLeft().getData());
+            delNode.setLeft(delNode.getLeft().getLeft());
+            delNode.setRight(delNode.getLeft().getRight());
+        } else if (p.getRight() == delNode) {
+            p.setRight(delNode.getLeft());
+        } else {
+            p.setLeft(delNode.getLeft());
+        }
+    } else {
+        //如果待删除的节点的左右节点都存在
+        BitNode q = delNode;
+        BitNode s = delNode.getLeft();
+        while (s.getRight() != null) {
+            q = s;
+            s = s.getRight();
+        }
+        delNode.setData(s.getData());
+        if (q != delNode) {
+            q.setRight(s.getLeft());
+        } else {
+            q.setLeft(s.getLeft());
+        }
+    }
+    return true;
+}
+
+```
+**求二叉树的高度**  
+很简单的实现，看一下
+```
+public static int getHeight(BitNode node) {
+    if (node != null) {
+        int l = getHeight(node.getLeft());
+        int r = getHeight(node.getRight());
+        return Math.max(l, r) + 1;
+    } else return 0;
+}
+```
+### 平衡二叉树
+平衡二叉树是一种二叉排序树，其中每一个节点的左子树和右子树的高度差至多为1   
+**平衡因子的定义**  
+二叉树上节点的左子树深度减去右子树深度的值称为平衡因子BF  
+平衡二叉树的实现及思想见书本，这里跳过  
+
+### 多路查找树（B树、B+树）
+多路查找树，其每一个节点的孩子数可以多余两个，且每一个节点处可以存储多个元素
+#### 2-3树
+2-3树是特殊的B树，其中的每一个节点都具有两个孩子（称为2节点）或者三个孩子（称为3节点）  
+一个2节点包含一个元素和两个孩子（或者没有孩子），且孩子节点左小右大  
+一个3节点包含两个元素和三个孩子（或者没有孩子），且孩子节点左小右大
+#### 2-3-4树
+2-3-4树是2-3树的概念扩展，包括了4个节点的使用。一个4节点包含小中大三个元素和四个孩子（或者没有孩子）
+#### B树和B+树
+B树是一种平衡的多路查找树，2--3树和2-3-4树都是B树的特例。节点最大的孩子数目称为B树的阶，因此2-3树是3阶B树，2-3-4树是4阶B树    
+**m阶B树具有的性质**  
+* 如果根节点不是叶节点，则其至少有两颗子树
+* 每一个非根的分支节点至少有Ceil(m/2)-1个元素，至多有m-1个元素
+* 每一个非根的分支节点至少有Ceil(m/2)个子节点，至多有m个子节点
+* 所有叶子节点都位于同一层次
+
+B+树和B树的形式基本一致，不过其性质和实现不同  
+**m阶B+树具有的性质**  
+* B+树包含2种类型的结点：内部结点（也称索引结点）和叶子结点。根结点本身即可以是内部结点，也可以是叶子结点。根结点的关键字个数最少可以只有1个
+* B+树与B树最大的不同是内部结点不保存数据，只用于索引，所有数据（或者说记录）都保存在叶子结点中
+* 阶B+树表示了内部结点最多有m-1个关键字（或者说内部结点最多有m个子树），阶数m同时限制了叶子结点最多存储m-1个记录
+* 内部结点中的key都按照从小到大的顺序排列，对于内部结点中的一个key，左树中的所有key都小于它，右子树中的key都大于等于它。叶子结点中的记录也按照key的大小排列
+* 每个叶子结点都存有相邻叶子结点的指针，叶子结点本身依关键字的大小自小而大顺序链接
+
+**重点掌握B树和B+树的插入和删除思想**  
+[图解B树和B+树的插入与删除操作](https://www.cnblogs.com/nullzx/p/8729425.html)
+
+### 散列表查找概述
+散列技术是在记录的存储位置和它的关键字之间建立一个确定的对应关系f，使得每个关键字key对应一个存储位置f(key)。查找时，根据这个确定的对应关系找到给定值key的映射f(key)，若查找集合中存在这个记录，则必定在f(key)的位置上  
+上面所陈述的f称为散列函数，又称哈希函数。采用散列技术将记录存储在一块连续的存储空间中，这块连续存储空间称为散列表或哈希表
+#### 散列函数的构造方法
+**直接定址法**  
+可以取关键字的某个线性函数值为散列地址
+> f(key)=a*key+b
+
+直接定址法的优点就是简单、均匀，也不会产生冲突，但问题是这需要实现知道关键字的分布情况，适合查找表较小且连续的情况  
+**数字分析法**  
+例如关键字的位数较多时，比如电话号码，那么此时可以考虑用后四位作为散列地址  
+**平方取中法**  
+例如关键字是1234，那么它的平方就是1522756，再抽去中间3位就是227  
+**折叠法**  
+折叠法是将关键字从左到右分割成位数相等的几部分（若最后一部分位数不够，最后一部分可以短些），然后将这几部分叠加求和，并按散列表表长取后几位作为散列地址  
+**除留余数法**  
+这是最常用的构造散列函数方法。对于散列表长为m的散列函数公式为
+> f(key)=key mod p
+
+**随机数法**  
+如其名，去关键字的随机函数作为它的散列地址
+#### 处理散列冲突的方法
+**开放地址法**  
+所谓开放地址法就是一旦发生了冲突，就去寻找一下个空的散列地址，只要散列表足够大。空的散列地址总能找到并将记录存入
+> f(key)=(f(key)+d) mod m
+
+比如表长为12，已结存入了25，f(25)=25%12=1；此时如果再存入37就会造成冲突，于是应用上面的公式f(37)=(f(37)+1)%12=2  
+上面这种解决冲突的开放地址法称为线性探测法  
+**二次探测法**  
+> f(key)=(f(key)+d) mod m  (d=1²，-1²，2²，-2²...，q²，-q²，q≤m/2) 
+
+增加平方运算的目的是为了不让关键字都聚集在某一块区域。还有一种叫**随机探测法**，也就是每次的d都是随机生成的  
+下面将利用开放地址法来实现散列表的查找算法  
+#### 散列表查找实现
+初始化散列表，需要传入散列表的大小，以便初始化。并且将散列表的存储数据全部初始化为Integer.MIN_VALUE
+```
+public class MyHashTable {
+    private int[] elem;
+    private int count;
+
+    /**
+     * 初始化散列表
+     *
+     * @param count
+     */
+    public MyHashTable(int count) {
+        this.elem = new int[count];
+        this.count = count;
+        for (int i = 0; i < count; i++) {
+            elem[i] = Integer.MIN_VALUE;
+        }
+    }
+...
+}
+```
+散列函数定义，使用的是除留余数法构建散列函数
+```
+/**
+ * 散列函数，除留余数法
+ *
+ * @param key
+ * @return
+ */
+public int hash(int key) {
+    return key % count;
+}
+```
+向散列表中插入元素，首先需要判断插入的位置是否产生了冲突，如果有冲突则使用线性探测重新进行寻址。除此之外还需要判断散列表是否已满
+```
+/**
+ * 向散列表中插入元素
+ *
+ * @param key
+ */
+public void insertHash(int key) {
+    int addr = hash(key);
+    //说明该地址已经有其他的元素存在
+    while (elem[addr] != Integer.MIN_VALUE) {
+        addr = hash(addr + 1);
+        if (addr == hash(key)) {
+            System.out.println("散列表已满...元素" + key + "插入不成功");
+            return;
+        }
+    }
+    elem[addr] = key;
+    System.out.println("元素" + key + "插入成功");
+}
+```
+查找散列表中是否存在元素，为了陷入死循环，查找的过程也需要判断是否查找完成，当所有的元素都检查之后仍然没有找到，则说明查找失败
+```
+/**
+ * 散列表查找元素
+ *
+ * @param key
+ * @return
+ */
+public int searchHash(int key) {
+    int addr = hash(key);
+    while (elem[addr] != key) {
+        addr = hash(addr + 1);
+        if (elem[addr] == Integer.MIN_VALUE || addr == hash(key)) {
+            return -1;
+        }
+    }
+    return addr;
+}
+```
+
+**散列表的装填因子**  
+散列表的装填因子α=填入表中的记录个数/散列表长度。α标志着散列表的装满的程度。当填入表中的记录越多，产生冲突的可能性就越大
