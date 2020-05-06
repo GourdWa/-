@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e4dbbac-5249-409a-9150-618ae30b493d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/find/find.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/find/src/com/learn/domain/DeleteBST.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/find/src/com/learn/domain/InsertBST.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/find/src/com/learn/domain/MyHashTableTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/find/src/com/learn/domain/SearchBST.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/find/src/com/learn/hash/MyHashTable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/find/src/com/learn/tree/BitNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/find/src/com/learn/utils/CreateTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/BubbleSorting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/HeapSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/MergingSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/MergingSort2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/QuickSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/SelectSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/ShellSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/StraightInsertionSort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
@@ -49,6 +49,9 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/StackAndQueue" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -74,13 +77,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.DeleteBST">
-    <configuration name="DeleteBST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.DeleteBST" />
-      <module name="find" />
+  <component name="RunManager" selected="Application.MergingSort2">
+    <configuration name="HeapSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.sort.HeapSort" />
+      <module name="sort" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.learn.domain.*" />
+          <option name="PATTERN" value="com.learn.sort.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -88,12 +91,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InsertBST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.InsertBST" />
-      <module name="find" />
+    <configuration name="MergingSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.sort.MergingSort" />
+      <module name="sort" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.learn.domain.*" />
+          <option name="PATTERN" value="com.learn.sort.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -101,12 +104,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LeetCode210" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.LeetCode210" />
-      <module name="graph" />
+    <configuration name="MergingSort2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.sort.MergingSort2" />
+      <module name="sort" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.learn.domain.*" />
+          <option name="PATTERN" value="com.learn.sort.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -114,12 +117,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyHashTableTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.MyHashTableTest" />
-      <module name="find" />
+    <configuration name="QuickSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.sort.QuickSort" />
+      <module name="sort" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.learn.domain.*" />
+          <option name="PATTERN" value="com.learn.sort.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -127,12 +130,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SearchBST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.learn.domain.SearchBST" />
-      <module name="find" />
+    <configuration name="SelectSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.learn.sort.SelectSort" />
+      <module name="sort" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.learn.domain.*" />
+          <option name="PATTERN" value="com.learn.sort.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -142,11 +145,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DeleteBST" />
-        <item itemvalue="Application.MyHashTableTest" />
-        <item itemvalue="Application.InsertBST" />
-        <item itemvalue="Application.SearchBST" />
-        <item itemvalue="Application.LeetCode210" />
+        <item itemvalue="Application.MergingSort2" />
+        <item itemvalue="Application.MergingSort" />
+        <item itemvalue="Application.HeapSort" />
+        <item itemvalue="Application.SelectSort" />
+        <item itemvalue="Application.QuickSort" />
       </list>
     </recent_temporary>
   </component>
@@ -183,6 +186,13 @@
       <workItem from="1588143527875" duration="12769000" />
       <workItem from="1588298488906" duration="9095000" />
       <workItem from="1588403928255" duration="1309000" />
+      <workItem from="1588497006174" duration="5603000" />
+      <workItem from="1588555687084" duration="9292000" />
+      <workItem from="1588572456050" duration="667000" />
+      <workItem from="1588599066371" duration="3037000" />
+      <workItem from="1588667424890" duration="14542000" />
+      <workItem from="1588732254422" duration="9580000" />
+      <workItem from="1588748476267" duration="240000" />
     </task>
     <servers />
   </component>
@@ -318,8 +328,39 @@
           <line>54</line>
           <option name="timeStamp" value="96" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/sort/src/com/learn/sort/QuickSort.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/sort/src/com/learn/sort/BubbleSorting.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/sort/src/com/learn/sort/BubbleSorting.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/sort/src/com/learn/sort/HeapSort.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/sort/src/com/learn/sort/MergingSort2.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="i + k - 1" language="JAVA" />
+        <watch expression="i + 2 * k - 1" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DataStructure$SqDoubleStackTest_push.ic" NAME="SqDoubleStackTest.push Coverage Results" MODIFIED="1587047198257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

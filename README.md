@@ -1232,3 +1232,271 @@ public int searchHash(int key) {
 
 **散列表的装填因子**  
 散列表的装填因子α=填入表中的记录个数/散列表长度。α标志着散列表的装满的程度。当填入表中的记录越多，产生冲突的可能性就越大
+
+## 第九章
+---
+![八大排序算法比较](https://upload-images.jianshu.io/upload_images/1156494-62f859c2ac6f95ff.png?imageMogr2/auto-orient/strip|imageView2/2/w/630/format/webp)
+
+其中归并排序的辅助空间为O(n)，需要一个临时数组  
+**排序算法的稳定性定义**  
+能保证两个相等的数，经过排序之后，其在序列的前后位置顺序不变。（A1=A2，排序前A1在A2前面，排序后A1还在A2前面）  
+**稳定的排序算法**：冒泡排序，插入排序、归并排序、基数排序  
+**不稳定的排序算法**：选择排序、快速排序、希尔排序、堆排序
+
+
+### 交换排序
+交换排序可以分为冒泡排序和快速排序
+#### 冒泡排序
+简单明了，最容易想到的排序算法
+**传统的冒泡排序算法**
+```
+public static void bubbleSort2(int[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+        for (int j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+```
+**优化的冒泡排序算法**
+```
+public static void bubbleSort(int arr[]) {
+    boolean didSwap;
+    for (int i = 0, len = arr.length; i < len - 1; i++) {
+        didSwap = false;
+        for (int j = 0; j < len - i - 1; j++) {
+            if (arr[j + 1] < arr[j]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                didSwap = true;
+            }
+        }
+        if (didSwap == false)
+            return;
+    }
+}
+```
+总结：使用优化后的冒泡排序算法的时间复杂度平均情况是O(n²)；最好的情况是O(n)（也就是此时元素是排好序的）；最坏的情况是O(n²)（逆序）。空间复杂度为O（1）
+
+#### 快速排序
+快速排序的关键在于基准值的选择（也就是代码中的t），每次将数组中比基准值小的移动到左边，比基准值大的移动到右边。值得注意的是一定要从右边开始，也就是先找比基准值大的，不然程序不能正确排序，这个bug很容易复现
+```
+private static void quickSort(int[] arr, int left, int right) {
+    if (left > right)
+        return;
+    int start = left;
+    int end = right;
+    int t;
+    while (left < right) {
+        while (left < right && arr[right] >= arr[start])
+            right--;
+        while (left < right && arr[left] <= arr[start])
+            left++;
+
+        if (left < right) {
+            t = arr[left];
+            arr[left] = arr[right];
+            arr[right] = t;
+        }
+    }
+    //说明left等于right
+    t = arr[left];
+    arr[left] = arr[start];
+    arr[start] = t;
+    quickSort(arr, start, left - 1);
+    quickSort(arr, left + 1, end);
+
+}
+```
+总结：快速排序的时间复杂度
+1.	最好的情况就是每次的基准值都能将数组均分，这种情况下的时间复杂度为O(nlogn)，此时空间复杂度为O(logn)
+2.	平均情况也是O(nlogn)
+3.	最糟糕的情况是待排序列已经是正序或者逆序，每次每次划分只能将序列分为一个元素与其他元素两部分，这时的快速排序退化为冒泡排序，如果用数画出来，得到的将会是一棵单斜树，也就是说所有所有的节点只有左（右）节点的树，这种情况下时间复杂度为O(n²)；此时空间复杂度为O(n)
+4.	快速排序不是一个稳定的排序算法。比如序列为 “5,3(1),4,3(2),8,11,9”， 现在中枢元素5和3(2)交换就会把元素3的稳定性打乱。不稳定发生在中枢元素和a[j]交换的时刻
+
+### 选择排序
+选择排序排序分为直接选择排序和堆排序
+#### 简单选择排序
+正如其名，简单明了
+```
+private static void selectSort(int[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+        int min = i;
+        for (int j = i + 1; j < arr.length; j++)
+            if (arr[min] > arr[j])
+                min = j;
+        if (i != min) {
+            int temp = arr[min];
+            arr[min] = arr[i];
+            arr[i] = temp;
+        }
+    }
+}
+```
+总结：快速排序的时间复杂度无论最坏情况还是最好情况都是O(n²)，空间复杂度为O(1)。且选择排序不是一个稳定的排序算法，例如序列“5(1),8,5(2),2,9”，5(1)会和2交换，破坏稳定性。
+
+#### 堆排序
+堆排序的关键在于构建堆，堆又分为大顶堆和小顶堆，这里构建的大顶堆（小顶堆的构建是同样的思想）。大顶堆中根元素一定是最大的值，因此根据这个性质可以对一个无序序列进行排序  
+**思想**：将待排序的序列构成一个大顶堆。此时，整个序列的最大值就是堆顶的根节点。将根节点与堆数组的末尾元素交换，此时末尾元素就是最大值，然后再讲剩余的n-1个序列重新构成一个堆，这样就会得到n个元素中的次小值。如此往复直到得到一个有序序列
+```
+private static void heapSort(int[] arr) {
+    int len = arr.length;
+    int temp;
+    for (int i = len / 2 - 1; i >= 0; i--) {
+        heapAdjust(arr, i, len);
+    }
+    //大顶堆
+    for (int i = len - 1; i >= 0; i--) {
+        temp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = temp;
+        heapAdjust(arr, 0, i);
+    }
+}
+
+private static void heapAdjust(int[] arr, int n, int len) {
+    int temp = arr[n];
+    for (int i = 2 * n + 1; i < len; i = 2 * i + 1) {
+        //寻找子节点中最大的子节点
+        if (i + 1 < len && arr[i + 1] > arr[i])
+            i += 1;
+        //如果temp大于最大的子节点，则跳出循环
+        if (temp > arr[i])
+            break;
+        arr[n] = arr[i];
+        n = i;
+    }
+    arr[n] = temp;
+}
+```
+总结：堆排序的时间复杂度无论最好最坏都是O(nlogn)，空间复杂度是O(1)。且堆排序是不稳定的排序算法，例如序列50,90（1）,40,30,60,90（2）,80.在构建大顶堆时90（1）会排在序列的最后
+
+
+### 插入排序
+插入排序可以分为直接插入排序和希尔排序
+#### 直接插入排序
+直接插入排序的基本操作是将一个记录插入到排好序的有序表中，从而得到一个新的、记录数增1的有序表
+```
+private static void insertionSort(int[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+        if (arr[i] < arr[i - 1]) {
+            int temp = arr[i];
+            int j = 0;
+            for (j = i - 1; j >= 0 && arr[j] > temp; j--) {
+                arr[j + 1] = arr[j];
+            }
+            arr[j + 1] = temp;
+        }
+    }
+}
+```
+总结：直接插入排序最好的情况是待排序的序列是有序的，这样时间复杂度是O(n)；而最好的情况就是待排序的序列是逆序的情况，这样时间复杂度是O(n²)；平均情况也是O(n²)。空间复杂度是O(1)。经过分析可以知道，直接插入排序是稳定的排序算法
+#### 希尔排序
+希尔排序的思想与直接插入排序基本一致，只是直接插入排序的跳跃间隔是1，而希尔排序的间隔会逐渐减小，最后一步一定是1
+```
+private static void sellSort(int[] arr) {
+    int len = arr.length;
+    int increment = len / 3 + 1;
+    while (increment != 0) {
+        if (increment == 1)
+            increment = 0;
+        else
+            increment = increment / 3 + 1;
+        for (int i = increment; i < len; i++) {
+            if (arr[i - increment] > arr[i]) {
+                int temp = arr[i];
+                int j = 0;
+                for (j = i - increment; j >= 0 && arr[j] > temp; j -= increment) {
+                    arr[j + increment] = arr[j];
+                }
+                arr[j + increment] = temp;
+            }
+        }
+    }
+}
+```
+总结：希尔排序的最好情况，时间复杂度是O(n^1.3)，也就是有序的情况，最坏情况是O(n²)，空间复杂度是O(1)。由于希尔排序步长的原因，交换是跳跃式的，所以希尔排序不是一个稳定的排序算法
+
+### 归并排序
+归并排序的原理是假设初始序列含有n个记录，则可以看成是n个有序的子序列，每个子序列的长度为1，然后两两归并，得到ceil(n/2)个长度为2或1的有序子序列，再两两合并，...，直到得到一个长度为N的有序序列   
+在归并排序中，关键之一在于合并两个有序的数组，使这两个有序的数组合并后仍然有序，下面给出代码  
+**合并两个有序的序列**
+```
+/**
+ * 待排序的数组分为两个有序的子序列，将这两个有序的子序列合并成一个有序的序列
+ * 例如5 10 20 6 9 12，子序列5 10 20和子序列6 9 12分别是有序的，将这两个有序的序列合并成 6 9 12 5 10 20
+ *
+ * @param arr
+ * @param left
+ * @param mid
+ * @param right
+ * @param temp temp数组与arr数组一样的长度
+ */
+
+private static void merge(int[] arr, int left, int mid, int right, int[] temp) {
+    int p1 = left;
+    int p2 = mid + 1;
+    int point = left;
+    while (p1 <= mid && p2 <= right) {
+        if (arr[p1] < arr[p2])
+            temp[point++] = arr[p1++];
+        else
+            temp[point++] = arr[p2++];
+    }
+    while (p1 <= mid)
+        temp[point++] = arr[p1++];
+    while (p2 <= right)
+        temp[point++] = arr[p2++];
+    for (int i = left; i <= right; i++) {
+        arr[i] = temp[i];
+    }
+}
+```
+**递归实现**  
+递归实现归并排序是最容易理解的，其原理就是简单的应用归并排序的原理，首先将无序序列拆分成一个个的单独序列，然后两两合并成有序序列
+```
+private static void mergeSort(int[] arr, int left, int right, int[] temp) {
+    if (left < right) {
+        int mid = (left + right) / 2;
+        mergeSort(arr, left, mid, temp);
+        mergeSort(arr, mid + 1, right, temp);
+        merge(arr, left, mid, right, temp);
+    }
+}
+```
+**迭代实现**  
+重点掌握迭代实现归并排序，使用迭代实现的归并排序空间复杂度更低
+```
+private static void mergeSort(int[] arr) {
+    int k = 1;
+    int len = arr.length - 1;
+    int[] temp = new int[len + 1];
+    while (k <= len) {
+        mergeMethod(arr, k, len, temp);
+        k = 2 * k;
+    }
+}
+
+private static void mergeMethod(int[] arr, int k, int len, int[] temp) {
+    int i;
+    //为什么是i + 2 * k - 1和i+k-1呢
+    //因为比如每个序列的长度为2（也就是k为2），那么第一组的两个序列应该是arr[0~1]，
+    // arr[2~3];第二组的两个序列应该是arr[4~5]和arr[6~7]，
+    // 那么根据merge函数的参数定义i+k-1起始就是对应着mid参数；i+2*k-1就是对应着high参数
+    for (i = 0; i <= len; i += 2 * k) {
+        if (i + 2 * k - 1 <= len)
+            merge(arr, i, i + k - 1, i + 2 * k - 1, temp);
+        else
+            break;
+    }
+    if (i + k - 1 < len)
+        merge(arr, i, i + k - 1, len, temp);
+}
+```
+总结：归并排序的时间复杂度无论好坏都是O(nlogn)，其需要O(n)的辅助空间(使用迭代实现)，且归并排序是稳定的排序算法
+
