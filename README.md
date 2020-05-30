@@ -143,7 +143,7 @@ public T getElem(int i) throws Exception {
         throw new Exception("第【" + i + "】个元素不存在");
     return temp.getDate();
 }
-```  
+```
 **单链表的插入**  
 思路  
 * 声明一个临时结点temp指向单链表的头结点（不是第一个结点）
@@ -355,7 +355,89 @@ public T deQueue() throws Exception {
     return res;
 }
 ```
+### 第五章
+
+---
+
+**KMP算法**
+
+给定主串S和待匹配的串P，找到S中P第一次出现的位置，如果不存在则返回-1；存在则返回S中相应的索引
+
+暴力略
+
+**KMP算法思想**
+
+i表示S中的位置，j表示P中的位置。KMP算法相对于暴力求解的优势是不会回溯i，例如S='abcabcx',P='abcd'。如果使用暴力，当检查到S中第3位a与P中第3位d不相等的时候，i会回溯到1从新开始匹配；而KMP算法的i不会回溯，只会回溯j，也就是直接将j回溯到0，再与S中的第3位开始比较，避免了两次回溯
+
+**KMP算法的关键是寻找next数组，next数组是由P串确定的，next[j]的值代表的是当P串中的第j位出现与S串中的第i为不等时，j应该回溯带next[j]位置**
+
+next数组的确定
+
+>P="abcabx"，如果P的第0位与S串的第i位不相等时，此时因为P已经在最左边了，应该移动S串，因此可以令next[0]=-1；如果P串的第1位与S串的第i位不等时，P只能回溯到第0位，因此next[1]=0
+>
+>确定next数组的第k位，需要看P串的第0到k-1位首位相等的数目
+>
+>例如next[2]，则P中0到1为ab，此时首位不相等，则next[2]=0;next[3],对应的是abc，也不相等，所以next[3]=0；next[4]，对应abca，可知首尾存在a一个相等，因此next[4]=1；next[5]，对应abcab，首尾的ab相等，因此next[5]=2；
+>
+>因此P="abcabx"，next={-1,0,0,0,1,2};
+>
+>同理P=“ababaaaba”，next={-1,0,0,1,2,3,1,1,2}
+
+求解next数组的函数
+
+```java
+public int[] getNext(String ps) {
+    int[] next = new int[ps.length()];
+    next[0] = -1;
+    int i = 0;
+    int j = -1;
+    while (i < ps.length() - 1) {
+        if (j == -1 || ps.charAt(i) == ps.charAt(j)) {
+            j += 1;
+            i += 1;
+            next[i] = j;
+        } else {
+            j = next[j];
+        }
+    }
+    return next;
+}
+```
+
+匹配函数
+
+```java
+public int strStr(String haystack, String needle) {
+    if (needle == null || needle.length() == 0)
+        return 0;
+
+    char[] t = haystack.toCharArray();
+    char[] p = needle.toCharArray();
+    int i = 0; // 主串的位置
+    int j = 0; // 模式串的位置
+    int[] next = getNext(needle);
+    while (i < t.length && j < p.length) {
+        if (j == -1 || t[i] == p[j]) { // 当j为-1时，要移动的是i，当然j也要归0
+            i++;
+            j++;
+        } else {
+            j = next[j]; // j回到指定位置
+        }
+    }
+    if (j == p.length) {
+        return i - j;
+    } else {
+        return -1;
+    }
+}
+```
+
+
+
+
+
 ### 第六章
+
 ----
 #### 二叉树
 * **斜树**：所有节点都只有左子树的二叉树叫左斜树；所有节点都只有右子树的二叉树叫右斜树
@@ -363,7 +445,7 @@ public T deQueue() throws Exception {
 * **完全二叉树**：对一棵具有n个节点的二叉树按层序编号，如果编号i的节点与同样深度的满二叉树中编号为i的节点在二叉树中位置完全相同，则这棵二叉树称为完全二叉树 
 ### 二叉树的三种遍历方式（难点在于非递归遍历）
 #### 二叉树的先序遍历递归和非递归实现
-```
+```java
 /**
  * 二叉树递归先序遍历
  *
@@ -554,7 +636,7 @@ public static void threadNodes(ThreadBiTree node) {
             node = node.getRchild();
         }
     }
-``` 
+```
 **练习**
 1. 利用递归求解二叉树的深度，DFS 
 2. 层级遍历二叉树，主要使用BFS
@@ -629,7 +711,7 @@ public void bfsTraverse(MGraph graph) {
         }
     }
 }
-``` 
+```
 #### 最小生成树
 在最小生成树中用的图用邻接矩阵表示如下
 ```

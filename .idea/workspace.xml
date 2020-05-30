@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e4dbbac-5249-409a-9150-618ae30b493d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/BubbleSorting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/HeapSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/MergingSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/MergingSort2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/QuickSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/SelectSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/ShellSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sort/src/com/learn/sort/StraightInsertionSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -193,6 +183,8 @@
       <workItem from="1588667424890" duration="14542000" />
       <workItem from="1588732254422" duration="9580000" />
       <workItem from="1588748476267" duration="240000" />
+      <workItem from="1589812354127" duration="776000" />
+      <workItem from="1589847763350" duration="96000" />
     </task>
     <servers />
   </component>
