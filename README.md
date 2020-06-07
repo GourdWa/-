@@ -703,6 +703,7 @@ public void bfsTraverse(MGraph graph) {
                 for (int j = 0; j < graph.getNumVertexes(); j++) {
                     //将与
                     if (graph.getArc()[pollEle][j] == 1 && !visited[j]) {
+		    	visited[j]=true;
                         System.out.println(graph.getVexs()[j]);
                         queue.add(j);
                     }
