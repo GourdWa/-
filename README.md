@@ -781,6 +781,7 @@ for (int i = 0; i < graph.length; i++) {
 
 [克鲁斯卡尔算法步骤细节](https://blog.csdn.net/junya_zhang/article/details/83584592)  
 因为Kruskal算法是以边为对象建立最小生成树，因此，需要构建一个**Edge类**
+
 ```
 public class Edge {
 	//边的起始顶点
@@ -885,6 +886,7 @@ private static int[] dijksra(int[][] graph, int start) {
 ![Floyd图2](https://img-blog.csdn.net/20130501183719888)  
 看图不说话，重要的思想就是引入中转节点，重点实现推导是上面的公式，还不理解就看书，简洁明了
 代码，其中distance变量的初始值等价于graph邻接矩阵，trace的值如下初始化，核心思想就是引入一个中间节点i，当求节点j到k的距离时，先判断j到i的距离加i到k的距离和j到k的距离的大小（也就是上面的公式）。那个小就用谁更新节点
+
 ```
 private static void floyd(int[][] distance, int[][] trace) {
     for (int i = 0; i < distance.length; i++) {
@@ -912,9 +914,10 @@ private static void floyd(int[][] distance, int[][] trace) {
 #### 拓扑排序
 在一个有向图中，对所有的节点进行排序，要求没有一个节点指向它前面的节点,先统计所有节点的入度，对于入度为0的节点就可以分离出来，然后把这个节点指向的节点的入度减一,一直做改操作，直到所有的节点都被分离出来。如果最后不存在入度为0的节点，那就说明有环，不存在拓扑排序，也就是很多题目的无解的情况。    
 
-[拓扑排序过程](https://img-blog.csdn.net/20180625175824103?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzEzMjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)  
+![拓扑排序过程](https://img-blog.csdn.net/20180625175824103)  
 典型例题，LeetCode207课程表问题，分为BFS解决和DFS两种思路，但是不管哪种思路都需要使用到邻接链表的思路，也就是找到每个顶点的入度节点，例如上图中e的入度节点是c,f,d  
 在拓扑排序中，其问题的本质可以归结为是否有环，如果图有环，那么是不可能完成拓扑排序的
+
 ```
 public static boolean canFinish(int numCourses, int[][] prerequisites) {
   /*    //用来存储各个节点
